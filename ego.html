@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Смерть Эго</title>
+  <link rel="icon" type="image/png" href="oko.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Unbounded', sans-serif;
+      color: #e0e0e0;
+      background: radial-gradient(ellipse at center, #0e0e0e 0%, #000000 100%);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('image/марка25.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 10;
+      transition: top 0.6s ease, opacity 0.6s ease;
+      opacity: 1;
+      flex-wrap: wrap;
+    }
+
+    header button {
+      background: none;
+      border: 1px solid #a0ffe6;
+      color: #a0ffe6;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Unbounded', cursive;
+      transition: background 0.3s, box-shadow 0.4s ease-in-out, transform 0.3s;
+    }
+
+    header button:hover {
+      background: rgba(160, 255, 230, 0.1);
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #a0ffe6;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 160px auto 60px;
+      padding: 2rem;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 0 20px #000;
+      animation: breath 6s ease-in-out infinite;
+    }
+
+    @keyframes breath {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px #000;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    p.reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p:hover {
+      color: #a0ffe6;
+      text-shadow: 0 0 20px #a0ffe6;
+      transition: color 0.4s, text-shadow 0.4s;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.85);
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+
+    footer img {
+      width: 100px;
+      transition: transform 1.6s ease-in-out;
+      filter: invert(1) brightness(2);
+      animation: floatPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes floatPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-4px) scale(1.05); }
+    }
+
+    @media screen and (max-width: 1024px) {
+      main {
+        margin: 140px 2rem 60px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+      main {
+        margin: 120px 1rem 40px;
+        padding: 1rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="location.href='index.html'">Главная</button>
+    <button onclick="location.href='explore.html'">Исследовать</button>
+    <button onclick="location.href='ego.html'">Смерть Эго</button>
+    <button onclick="location.href='contact.html'">Контакты</button>
+  </header>
+
+  <main>
+    <h1>Смерть Эго</h1>
+    <p class="reveal">
+      В эзотерическом LSD-буддизме смерть эго рассматривается как необходимый этап для духовного перерождения. Последователи этой традиции верят, что только пройдя через иллюзию отделённости и разрушив границы ложного "я", можно испытать подлинное просветление.
+    </p>
+    <p class="reveal">
+      Во время психоделических практик многие ощущают, как их личность растворяется в потоке вселенского сознания. Это состояние часто сопровождается чувством бесконечной любви, глубокого покоя и понимания, что смерть — лишь переход, а не конец. Эго умирает, чтобы освободить место для расширенного восприятия бытия.
+    </p>
+    <p class="reveal">
+      Именно в этом процессе — в смерти эго — кроется возможность перерождения, освобождения от страха и пробуждения к истине.
+    </p>
+  </main>
+
+  <footer>
+    <img src="image/oko.png" alt="Глаз">
+    <p>Открой свой разум</p>
+  </footer>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    revealElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

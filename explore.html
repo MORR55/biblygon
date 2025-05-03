@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Откровения Сознания</title>
+  <link rel="icon" type="image/png" href="image/oko.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Unbounded', cursive;
+      color: #e3e3e3;
+      background: url('image/глаз.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 10;
+      transition: top 0.6s ease, opacity 0.6s ease;
+      opacity: 1;
+    }
+
+    header button {
+      background: none;
+      border: 1px solid #a0ffe6;
+      color: #a0ffe6;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Unbounded', cursive;
+      transition: background 0.3s;
+    }
+
+    header button:hover {
+      background: rgba(160, 255, 230, 0.1);
+    }
+
+    .popup {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 1rem;
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 11;
+    }
+
+    .popup.show {
+      display: flex;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .popup button {
+      background: none;
+      border: 1px solid #a0ffe6;
+      color: #a0ffe6;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Unbounded', cursive;
+      transition: background 0.3s;
+    }
+
+    .popup button:hover {
+      background: rgba(160, 255, 230, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-left: 5%;
+      padding-top: 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    main {
+      max-width: 800px;
+      padding: 2rem;
+      animation: fadeInSlide 3s ease-out forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    @keyframes fadeInSlide {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 20px #000;
+      animation: breath 6s ease-in-out infinite;
+    }
+
+    @keyframes breath {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .highlight {
+      color: #a0ffe6;
+      font-weight: bold;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.85);
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    footer.visible {
+      opacity: 1;
+    }
+
+    footer img {
+  width: 60px;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease-in-out;
+  filter: invert(1) brightness(2); /* делает изображение белым */
+}
+
+    footer img:hover {
+      transform: scale(1.2) rotate(3deg);
+    }
+
+    footer a {
+      color: #a0ffe6;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+      .container {
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+      .popup {
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <header id="header">
+   <!-- <button onclick="location.href='index.html'">Главная</button>-->
+    <button id="exploreBtn">Исследовать</button>
+  <!--  <button onclick="location.href='contact.html'">Контакт</button>-->
+  </header>
+
+  <div class="popup" id="popupMenu">
+   <button onclick="location.href='index.html'">Главная</button>
+    <button onclick="location.href='explore.html'">Исследовать</button>
+    <button onclick="location.href='ego.html'">Смерть Эго</button>
+    <button onclick="location.href='contact.html'">Контакты</button>
+  </div>
+
+  <div class="container">
+    <main>
+      <h1>Откровения LSD-Буддистов</h1>
+      <p>
+        Среди психонавтов существует поверье, что <span class="highlight">смерть — это не конец, а переход</span>. LSD-буддисты, вдохновлённые тибетской "Книгой мёртвых" и опытом расширенного сознания, верят, что после физической смерти душа проходит череду состояний — бардо.
+      </p>
+      <p>
+        В этом тонком мире душа видит <span class="highlight">отражения своего ума</span>: страхи, желания, свет и тьму. Если она осознаёт, что всё вокруг — иллюзия её собственного восприятия, у неё появляется шанс вырваться из цикла перерождений и <span class="highlight">войти в чистый свет</span>.
+      </p>
+      <p>
+        LSD рассматривается ими не как наркотик, а как <span class="highlight">инструмент духовного пробуждения</span>, временно открывающий врата в подсознание. Через психоделические практики они стремятся к просветлению, не через отказ от мира, а через <span class="highlight">глубокое переживание истины</span>.
+      </p>
+      <p>
+        Их мантра: <em>«Ум — архитектор реальности. Осознай, растворись, переродись»</em>.
+      </p>
+      <p>
+        Они говорят: <em>«Путешествие не завершается смертью, а только начинается. Мы идём сквозь свет и тень, встречая самих себя в бесконечном зеркале Вселенной»</em>.
+      </p>
+    </main>
+  </div>
+
+  <footer id="pageFooter">
+    <img src="image/oko.png" alt="Око">
+    <div>
+      <a href="https://t.me/openuoyrmind" target="_blank">Telegram</a>
+      <a href="mailto:openuoyrmind920.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    const exploreBtn = document.getElementById("exploreBtn");
+    const popup = document.getElementById("popupMenu");
+    const header = document.getElementById("header");
+    const footer = document.getElementById("pageFooter");
+    let lastScrollTop = 0;
+
+    exploreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const rect = exploreBtn.getBoundingClientRect();
+      popup.classList.toggle("show");
+
+      const topPos = rect.bottom + window.scrollY + 10;
+      let leftPos = rect.left + rect.width / 2;
+
+      const popupWidth = popup.offsetWidth;
+      const maxLeft = document.body.clientWidth - popupWidth / 2;
+      if (leftPos > maxLeft) leftPos = maxLeft;
+      if (leftPos < popupWidth / 2) leftPos = popupWidth / 2;
+
+      popup.style.top = `${topPos}px`;
+      popup.style.left = `${leftPos}px`;
+      popup.style.transform = 'translateX(-50%)';
+    });
+
+    window.addEventListener("click", (e) => {
+      if (!popup.contains(e.target) && e.target !== exploreBtn) {
+        popup.classList.remove("show");
+      }
+    });
+
+    window.addEventListener("scroll", () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        header.style.top = "-100px";
+        header.style.opacity = "0";
+      } else {
+        header.style.top = "0";
+        header.style.opacity = "1";
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        footer.classList.add("visible");
+      }
+    });
+  </script>
+</body>
+</html>

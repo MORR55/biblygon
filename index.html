@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Открой свой разум</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Unbounded', cursive;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.6) saturate(1.3);
+    }
+
+    header {
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      animation: fadeIn 2s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      margin: 0;
+      text-shadow: 0 0 20px #00000088;
+    }
+
+    header p {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 1.5rem;
+      line-height: 1.6;
+      animation: fadeIn 3s ease-out forwards;
+      animation-delay: 1s;
+      opacity: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid #fff;
+      color: #fff;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      animation: fadeIn 3s ease-out forwards;
+      animation-delay: 2s;
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 150%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::after {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .floating-shape {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in-out;
+      z-index: 0;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .floating-shape:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+    .floating-shape:nth-child(2) { top: 40%; left: 70%; animation-delay: 3s; }
+    .floating-shape:nth-child(3) { top: 80%; left: 30%; animation-delay: 6s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
+      100% { transform: translateY(0px) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <video class="bg-video" autoplay muted loop>
+    <source src="фон.mp4" type="video/mp4">
+    Ваш браузер не поддерживает фоновые видео.
+  </video>
+
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+
+  <header>
+    <h1>Разум вне границ</h1>
+    <p>Исследуй неизведанные глубины своего сознания. Ощути момент, в котором рождается истина. Здесь и сейчас начинается твое пробуждение.</p>
+    <a class="btn" href="explore.html">Погрузиться</a>
+  </header>
+</body>
+</html>
