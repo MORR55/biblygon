@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Контакты</title>
-  <link rel="icon" type="image/png" href="oko.png">
+  <link rel="icon" type="image/png" href="image/oko.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap');
 
@@ -18,10 +18,11 @@
       font-family: 'Unbounded', sans-serif;
       color: #e0e0e0;
       background: radial-gradient(ellipse at center, #0e0e0e 0%, #000000 100%);
-      background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('контакты.jpg');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('image/контакты.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
+      touch-action: manipulation;
     }
 
     header {
@@ -136,6 +137,50 @@
       header {
         flex-direction: column;
         align-items: center;
+        padding: 0.5rem 1rem;
+      }
+
+      header button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      main {
+        margin: 140px auto 40px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header {
+        padding: 0.3rem 0.5rem;
+        gap: 0.5rem;
+      }
+
+      header button {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      input, textarea {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+
+      input[type="submit"] {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+
+      footer img {
+        width: 80px;
       }
     }
   </style>
@@ -162,24 +207,29 @@
   </main>
 
   <footer>
-    <img src="oko.png" alt="Глаз">
+    <img src="image/oko.png" alt="Глаз">
     <p>Открой свой разум</p>
   </footer>
 
   <script>
     let lastScrollTop = 0;
     const header = document.querySelector("header");
+    const delta = 10;
 
     window.addEventListener("scroll", () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop) {
-        header.classList.add("hide");
-      } else {
-        header.classList.remove("hide");
+
+      if (Math.abs(scrollTop - lastScrollTop) > delta) {
+        if (scrollTop > lastScrollTop) {
+          header.classList.add("hide");
+        } else {
+          header.classList.remove("hide");
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       }
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
   </script>
 </body>
 </html>
+
 
