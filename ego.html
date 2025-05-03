@@ -37,7 +37,7 @@
       z-index: 10;
       transition: top 0.6s ease, opacity 0.6s ease;
       opacity: 1;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     header button {
@@ -117,29 +117,25 @@
       50% { transform: translateY(-4px) scale(1.05); }
     }
 
-    @media screen and (max-width: 1024px) {
-      main {
-        margin: 140px 2rem 60px;
-      }
-    }
-
     @media screen and (max-width: 768px) {
+      header {
+        gap: 0.4rem;
+        padding: 0.5rem 0.8rem;
+      }
+
+      header button {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+        max-width: 100px;
+        white-space: nowrap;
+      }
+
       h1 { font-size: 2rem; }
       p { font-size: 1rem; }
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
+
       main {
         margin: 120px 1rem 40px;
         padding: 1rem;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      header button {
-        width: 100%;
-        text-align: center;
       }
     }
   </style>
@@ -155,13 +151,13 @@
   <main>
     <h1>Смерть Эго</h1>
     <p class="reveal">
-      В эзотерическом LSD-буддизме смерть эго рассматривается как необходимый этап для духовного перерождения. Последователи этой традиции верят, что только пройдя через иллюзию отделённости и разрушив границы ложного "я", можно испытать подлинное просветление.
+      В эзотерическом LSD-буддизме смерть эго рассматривается как необходимый этап для духовного перерождения...
     </p>
     <p class="reveal">
-      Во время психоделических практик многие ощущают, как их личность растворяется в потоке вселенского сознания. Это состояние часто сопровождается чувством бесконечной любви, глубокого покоя и понимания, что смерть — лишь переход, а не конец. Эго умирает, чтобы освободить место для расширенного восприятия бытия.
+      Во время психоделических практик многие ощущают, как их личность растворяется в потоке вселенского сознания...
     </p>
     <p class="reveal">
-      Именно в этом процессе — в смерти эго — кроется возможность перерождения, освобождения от страха и пробуждения к истине.
+      Именно в этом процессе — в смерти эго — кроется возможность перерождения...
     </p>
   </main>
 
@@ -171,8 +167,19 @@
   </footer>
 
   <script>
-    const revealElements = document.querySelectorAll('.reveal');
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
 
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > lastScrollY) {
+        header.style.top = '-100px';
+      } else {
+        header.style.top = '0';
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -185,3 +192,4 @@
   </script>
 </body>
 </html>
+
